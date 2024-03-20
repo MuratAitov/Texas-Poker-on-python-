@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import random
 
 class Player(ABC):
     def __init__(self, name):
@@ -15,7 +16,15 @@ class Player(ABC):
             return amount
         else:
             return 0
+        
+    def fold(self):
+        pass 
 
     @abstractmethod
     def decide_action(self):
         pass
+
+class RandomPlayer(Player):
+    def decide_action(self):
+        return random.choice(['fold', 'call', 'raise']), random.randint(1, self.chips)
+
